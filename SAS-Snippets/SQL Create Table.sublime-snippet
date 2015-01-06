@@ -1,0 +1,13 @@
+<snippet>
+  <description>Proc SQL</description>
+  <content>
+<![CDATA[CREATE TABLE ${1:WORK.}${2:Dataset-name}
+;
+]]>
+  </content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>create</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>sql.procstep.block.sas</scope>
+
+</snippet>

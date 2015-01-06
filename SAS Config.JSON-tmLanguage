@@ -1,0 +1,102 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{
+    "name": "SAS Config. file",
+    "comment": "A work in progress--",
+    "scopeName": "text.SASConf",
+    "fileTypes": [
+        "cfg",
+        "dim"
+    ],
+    "uuid": "dd026570-f952-4ad5-8a7d-593ad8a244b0",
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        {  "name": "meta.conf",
+           "match": "(?i:(-)(\\w+))",
+           "captures": {
+               "1": { "name": "punctuation.definition.dash.SASConf" },
+               "2": { "name": "support.function.SASConf" }
+           }
+        }
+    ],
+    "repository":{
+        "comments":{
+            "patterns":[
+                {
+                    "begin":"/\\*",
+                    "captures":{
+                        "0":{
+                            "name":"punctuation.definition.comment.sas"
+                        }
+                    },
+                    "end":"\\*/",
+                    "name":"comment.block.sas"
+                }
+            ]
+        },
+        "strings":{
+            "patterns":[
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(?i:(')[^'\\\\]*(')[^b^d^t^n^x])",
+                    "name":"string.quoted.single.sas"
+                },
+
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(`)[^`\\\\]*(`)",
+                    "name":"string.quoted.other.backtick.sas"
+                },
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(?i:(\")[^\"#]*(\")[^b^d^t^n^x])",
+                    "name":"string.quoted.double.sas"
+                },
+                {
+                    "begin":"%\\{",
+                    "beginCaptures":{
+                        "0":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        }
+                    },
+                    "end":"\\}",
+                    "endCaptures":{
+                        "0":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "name":"string.other.quoted.brackets.sas",
+                    "patterns":[
+                        {
+                            "include":"#string_interpolation"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

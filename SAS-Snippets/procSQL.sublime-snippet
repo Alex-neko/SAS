@@ -1,0 +1,14 @@
+<snippet>
+  <description>Proc block</description>
+<content>
+<![CDATA[PROC ${1:PROCNAME};
+    ${2:/* Some code */}
+${1/SQL$|(.*)/(?1:RUN;:QUIT;)/}
+]]>
+</content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>proc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+
+</snippet>

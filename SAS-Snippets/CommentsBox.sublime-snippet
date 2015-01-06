@@ -1,0 +1,35 @@
+<snippet>
+  <description>Header Comments Box</description>
+<content>
+<![CDATA[
+/*******************************************************************************
+ * PROGRAM NAME  :  $TM_FILENAME                                              *
+ * DESCRIPTION   :                                                             *
+ * CALLED BY     :                                                             *
+ * CALLS TO      :                                                             *
+ * PROGRAMMER    :  $TM_LOGIN <$TM_EMAIL_PRO>                               *
+ * DATE WRITTEN  :  2014/07/31 10:59:51 by $TM_LOGIN                              *
+ *******************************************************************************
+ * INPUT FILES   :                                                             *
+ * OUTPUT FILES  :                                                             *
+ *******************************************************************************
+ * MODIFICATIONS :                                                             *
+ * ------------- :                                                             *
+ * DATE          :  2014/07/31 11:00:16 by acurie                              *
+ * CHANGE #      :                                                             *
+ * PROGRAMMER    :  $TM_FULLNAME                                                 *
+ * DESCRIPTION   :                                                             *
+ ******************************************************************************/
+ /* NOTE : Include a comment before each major DATA step and
+           before each major PROC step. */
+
+
+]]>
+
+</content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>box</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sas</scope>
+
+</snippet>

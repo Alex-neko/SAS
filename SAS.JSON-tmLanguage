@@ -1,0 +1,344 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+{
+    "name":"SAS Programm",
+    "comment": "A work in progress--",
+    "scopeName":"source.sas",
+    "fileTypes":["sas"],
+    "uuid":"3bbf5a9f-f780-4e8a-9bfe-a6518e5a1683",
+    "foldingStartMarker":"(?i:(proc|data|%macro)\\s[^;]*;$)",
+    "foldingStopMarker":"(?i:(run|quit|%mend)[^;]*;$",
+    "patterns":[
+        { "include": "#comments" },
+        { "include": "#macrostatements" },
+        { "include": "#macroblocks" },
+        { "include": "#procsteps" },
+        { "include": "#datasteps" }
+    ],
+    "repository":{
+        "comments":{
+            "patterns":[
+                { "include": "#macrocomments" },
+                {
+                    "match":"^\\s*(\\*).*;\\s*$\\n?",
+                    "name":"comment.line.asterisk.sas",
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.comment.sas"
+                        }
+                    }
+                },
+                {
+                    "begin":"/\\*",
+                    "captures":{
+                        "0":{
+                            "name":"punctuation.definition.comment.sas"
+                        }
+                    },
+                    "end":"\\*/",
+                    "name":"comment.block.sas"
+                }
+            ]
+        },
+        "macrocomments":{
+            "patterns": [
+                {
+                    "match":"^\\s*(%\\*).*;\\s*$\\n?",
+                    "name":"comment.line.asterisk.sas",
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.comment.sas"
+                        }
+                    }
+                }
+            ]
+        },
+        "macroblocks":{
+            "name":"meta.macro.sas",
+            "begin": "(?i:(%macro)\\s*(\\w*)(\\s*\\((\\s*,{0,1}\\s*\\w*={0,1}\\w*\\s*)*\\)){0,1}\\s*;)",
+            "end": "(?i:(%mend\\b)\\s*(\\w*))\\s*",
+            "patterns": [
+                { "include" : "#comments" },
+                { "include" : "#macrostatements" },
+                { "include" : "#macrofunctions" },
+                { "include" : "#macrovariables" },
+                { "include" : "#macrolabels" },
+
+                { "include" : "#procsteps" },
+                { "include" : "#datasteps" },
+
+                { "include" : "#strings" },
+                { "include" : "#constantes" },
+                { "include" : "#regexps" }
+            ],
+            "beginCaptures": {
+                "0": { "name" : "meta.function-call.sas" },
+                "1": { "name" : "support.function.sas" },
+                "2": { "name" : "variable.other.sas" },
+                "3": { "name" : "param.macro.block.sas" },
+                "4": { "name" : "variable.other.sas" }
+            },
+            "endCaptures": {
+                "0": { "name" : "meta.function-call.sas" },
+                "1": { "name" : "support.function.sas" },
+                "2": { "name" : "variable.other.sas" }
+            }
+        },
+        "procsteps": {
+            "patterns": [
+                { "include": "#procstepsql" },
+                { "include": "#procstepsother" }
+            ]
+        },
+        "procstepsql": {
+            "name":"sql.procstep.block.sas",
+            "begin": "(?i:\\b(proc)\\s*(sql))",
+            "end": "(?i:\\b(quit)\\s*;)",
+            "patterns": [
+                { "include": "#comments" },
+                { "include":"source.sql"}
+            ],
+            "beginCaptures": {
+                "0": { "name": "meta.function-call.sas" },
+                "1": { "name": "support.function.sas" },
+                "2": { "name": "support.class.sas" }
+            },
+            "endCaptures": {
+                "1": { "name": "support.function.sas" }
+            }
+        },
+        "procstepsother":{
+            "name":"procstep.block.sas",
+            "begin": "(?i:\\b(proc)\\s*(\\w+))",
+            "end": "(?i:\\b(run)\\s*;)",
+            "patterns": [
+                { "include": "#comments" },
+                { "include":"#strings" },
+                { "include":"#constantes" },
+                { "include":"#regexps" }
+            ],
+            "beginCaptures": {
+                "0": { "name": "meta.function-call.sas" },
+                "1": { "name": "support.function.sas" },
+                "2": { "name": "support.class.sas" }
+            },
+            "endCaptures": {
+                "1": { "name": "support.function.sas" }
+            }
+        },
+        "datasteps":{
+            "name":"datastep.block.sas",
+            "begin": "(?i:\\b(data)\\s*(\\w+\\.)?(\\w*)\\b)",
+            "end": "(?i:\\b(run);)",
+            "patterns": [
+                { "include": "#comments" },
+                { "include":"#strings" },
+                { "include":"#constantes" },
+                { "include":"#regexps" },
+                { "include" : "#macrovariables" },
+                {
+                    "name"  : "keyword.datastep.sas",
+                    "match" : "(?i:\\b(by|label|format|set)\\b)"
+                },
+                {
+                    "name"  : "keyword.control.sas",
+                    "match" : "(?i:\\b(if|while|for|return)\\b)"
+                }
+            ],
+            "beginCaptures": {
+                "0": { "name": "meta.function-call.sas" },
+                "1":{ "name":"support.function.sas" },
+                "2":{ "name":"constant.other.library-name.sas" },
+                "3":{ "name":"constant.other.table-name.sas" }
+            },
+            "endCaptures": {
+                "1": { "name": "support.function.sas" }
+            }
+        },
+        "strings":{
+            "patterns":[
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(?i:(')[^'\\\\]*(')[^b^d^t^n^x])",
+                    "name":"string.quoted.single.sas"
+                },
+
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(`)[^`\\\\]*(`)",
+                    "name":"string.quoted.other.backtick.sas"
+                },
+                {
+                    "captures":{
+                        "1":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        },
+                        "3":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "comment":"this is faster than the next begin/end rule since sub-pattern will match till end-of-line and sas files tend to have very long lines.",
+                    "match":"(?i:(\")[^\"#]*(\")[^b^d^t^n^x])",
+                    "name":"string.quoted.double.sas"
+                },
+                {
+                    "begin":"%\\{",
+                    "beginCaptures":{
+                        "0":{
+                            "name":"punctuation.definition.string.begin.sas"
+                        }
+                    },
+                    "end":"\\}",
+                    "endCaptures":{
+                        "0":{
+                            "name":"punctuation.definition.string.end.sas"
+                        }
+                    },
+                    "name":"string.other.quoted.brackets.sas",
+                    "patterns":[
+                        {
+                            "include":"#string_interpolation"
+                        }
+                    ]
+                }
+            ]
+        },
+        "constantes": {
+            "patterns": [
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"]\\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\\d{2,4}['\"]d[^t])",
+                    "comment":"DATE"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"]((0{0,1}[0-9]|1[012])(:[0-5][0-9]){1,2}(am|pm){0,1}|(0{0,1}[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){1,2})['\"]t)",
+                    "comment":"time"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"]\\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\\d{2,4}:((0{0,1}[0-9]|1[012])(:[0-5][0-9]){1,2}(am|pm){0,1}|(0{0,1}[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){1,2})['\"]dt)",
+                    "comment":"DATETIME"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"][01.]{8}['\"]b)",
+                    "comment":"Binary"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"](\\w|\\s)+['\"]n)",
+                    "comment":"TEXT"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:['\"](\\d{2}((,{0,1})\\d{2})*)+['\"]x)",
+                    "comment":"Hexa"
+                },
+                {
+                    "name":"constant.numeric.sas",
+                    "match":"(?i:\\s[-+]{0,1}\\d+(.\\d+){0,1}(e[-+]{0,1}\\d+){0,1}\\s)",
+                    "comment":"Number"
+                },
+                {
+                    "name":"constant.numeric.sas",
+                    "match":"(?i:\\s([a-f]|[0-9])+x\\s)",
+                    "comment":"Number in hexa notation"
+                },
+                {
+                    "name":"constant.language.sas",
+                    "match":"(?i:\\$(\\w|\\d)+.)",
+                    "comment":"FORMAT "
+                }
+            ]
+        },
+        "string_escape":{
+            "match":"\\\\.",
+            "name":"constant.character.escape.sas"
+        },
+        "string_interpolation":{
+            "captures":{
+                "1":{
+                    "name":"punctuation.definition.string.end.sas"
+                }
+            },
+            "match":"(#\\{)([^\\}]*)(\\})",
+            "name":"string.interpolated.sas"
+        },
+        "macrostatements": {
+            "name": "macrostatement.block.sas",
+            "begin": "(?i:(\\%(ABORT|COPY|DISPLAY|GLOBAL|GOTO|INPUT|LET|LOCAL|PUT|RETURN|SYMDEL|SYSCALL|SYSEXEC|SYSLPUT|SYSRPUT|WINDOW|IF|THEN|DO|UNTIL|WHILE|ELSE|END))\\b)",
+            "end": "\\s*;",
+            "comment": "@SEE http://support.sas.com/documentation/cdl/en/mcrolref/61885/HTML/default/viewer.htm#a003167027.htm",
+            "patterns": [
+                { "include" : "#macrovariables" },
+                { "include" : "#macrofunctions" },
+                { "include" : "#strings" },
+                { "include" : "#constantes" },
+                { "include" : "#operators" }
+            ],
+            "beginCaptures": {
+                "0": { "name": "meta.function-call.sas" },
+                "1": { "name": "support.function.sas" }
+            }
+        },
+        "macrofunctions": {
+            "patterns": [
+                {
+                    "name": "support.function.sas",
+                    "match": "(?i:\\%(BQUOTE|NRBQUOTE|EVAL|INDEX|LENGTH|QUOTE|NRQUOTE|SCAN|QSCAN|STR|NRSTR|SUBSTR|QSUBSTR|SUPERQ|SYMEXIST|SYMGLOBL|SYMLOCAL|SYSEVALF|SYSFUNC|QSYSFUNC|SYSGET|SYSMACEXEC|SYSMACEXIST|SYSMEXECDEPTH|SYSMEXECNAME|SYSPROD|UNQUOTE|UPCASE|QUPCASE)\\b)",
+                    "comment": "@SEE http://support.sas.com/documentation/cdl/en/mcrolref/62978/HTML/default/viewer.htm#n1qqdn7r170c30n197p4jfufv1yy.htm"
+                }
+            ]
+        },
+        "macrovariables": {
+            "patterns": [
+                {
+                    "name":"variable.other.macro.sas",
+                    "match":"&\\w+.",
+                    "comment":"macro variable"
+                }
+            ]
+        },
+        "macrolabels": {
+            "patterns": [
+                {
+                    "name":"variable.other.macro.sas",
+                    "match":"%\\w+:",
+                    "comment":"macro variable"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.arithmetic.sas",
+                    "match": "[\\+/*^]"
+                },
+                {
+                    "name": "keyword.operator.comparison.sas",
+                    "match": "\\b(?i:(((eq|ne|gt|ge|lt|le)\\s+)|<|>|<=|>=|!=|\\^=))"
+                },
+                {  "name": "keyword.operator.assignment.sas",
+                   "match": "(=)"
+                }
+            ]
+
+        }
+    }
+}

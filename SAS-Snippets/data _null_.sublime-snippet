@@ -1,0 +1,9 @@
+<snippet>
+	<description>DATA _NULL_</description>
+    <content><![CDATA[DATA _NULL_;
+    SET ${0:/* dataset */};
+RUN;
+]]></content>
+    <tabTrigger>n</tabTrigger>
+    <scope>source.sas</scope>
+</snippet>

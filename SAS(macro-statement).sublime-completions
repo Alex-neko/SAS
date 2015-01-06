@@ -1,0 +1,31 @@
+{
+	"scope" : " macro.block.sas, source.sas -block.sas",
+
+	"completions":
+	[
+		{ "trigger" : "%ABORT"    , "contents" : "%ABORT ${1:Args} ;"},
+		{ "trigger" : "%COPY"     , "contents" : "%COPY ${1:macro-name} ${2:<options>} ;"},
+		{ "trigger" : "%DISPLAY"  , "contents" : "%DISPLAY ${1:window-name${2:<.group>}} ${3:NOINPUT} ${4:BLANK} ${5:BELL} ${6:DELETE} ;"},
+		{ "trigger" : "DO-END"   , "contents" : "%DO; \n ${1:actions} \n %END;"},
+		{ "trigger" : "DO-TO"    , "contents" : "%DO ${1:macro-variable} = ${2:start}  %TO ${3:stop} ${4:%BY ${5:increment}} ; ${6:actions} %END;"},
+		{ "trigger" : "DO-until" , "contents" : "%DO %UNTIL (${1:Expression}) ; ${2:action} %END;"},
+		{ "trigger" : "DO-while" , "contents" : "%DO %WHILE (${1:Expression}) ; ${2:action} %END;"},
+		{ "trigger" : "%END"      , "contents" : "%END;"},
+		{ "trigger" : "%GLOBAL"   , "contents" : "%GLOBAL ${1:macro-variable(s)} ;"},
+		{ "trigger" : "%GOTO"     , "contents" : "%GOTO ${1:label} ;"},
+		{ "trigger" : "IF"       , "contents" : "%IF ${1:Expression}%THEN ${2:action} ;"},
+		{ "trigger" : "%ELSE"     , "contents" : "%ELSE  ${2:action} ;"},
+		{ "trigger" : "%INPUT"    , "contents" : "%INPUT ${1:<macro-variable(s)>} ;"},
+		{ "trigger" : "%LET"      , "contents" : "%LET ${1:macro-variable} = ${2:<value>} ;"},
+		{ "trigger" : "%LOCAL"    , "contents" : "%LOCAL ${1:macro-variable(s)} ;"},
+		{ "trigger" : "%MEND"     , "contents" : "%MEND;"},
+		{ "trigger" : "%PUT"      , "contents" : "%PUT ${1:<text>} ;"},
+		{ "trigger" : "%RETURN"   , "contents" : "%RETURN;"},
+		{ "trigger" : "%SYMDEL"   , "contents" : "%SYMDEL ${1:macro-variable(s)} ${2:</ NOWARN>} ;"},
+		{ "trigger" : "%SYSCALL"  , "contents" : "%SYSCALL ${1:call-routine} ;"},
+		{ "trigger" : "%SYSEXEC"  , "contents" : "%SYSEXEC ${1:<command>} ;"},
+		{ "trigger" : "%SYSLPUT"  , "contents" : "%SYSLPUT"},
+		{ "trigger" : "%SYSRPUT"  , "contents" : "%SYSRPUT ${1:local-macro-variable} = ${2:remote-macro-variable} ;"},
+		{ "trigger" : "%WINDOW"   , "contents" : "%WINDOW ${1:window-name} ${2:<options>} ;"},
+	]
+}

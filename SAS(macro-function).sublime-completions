@@ -1,0 +1,35 @@
+{
+	"scope" : " macro.block.sas",
+	"completions":
+	[
+		{ "trigger" : "%BQUOTE"        , "contents" :"%BQUOTE"}        ,
+		{ "trigger" : "%NRBQUOTE"      , "contents" :"%NRBQUOTE"}      ,
+		{ "trigger" : "%EVAL"          , "contents" :"%EVAL"}          ,
+		{ "trigger" : "%INDEX"         , "contents" :"%INDEX"}         ,
+		{ "trigger" : "%LENGTH"        , "contents" :"%LENGTH"}        ,
+		{ "trigger" : "%QUOTE"         , "contents" :"%QUOTE"}         ,
+		{ "trigger" : "%NRQUOTE"       , "contents" :"%NRQUOTE"}       ,
+		{ "trigger" : "%SCAN"          , "contents" :"%SCAN"}          ,
+		{ "trigger" : "%QSCAN"         , "contents" :"%QSCAN"}         ,
+		{ "trigger" : "%STR"           , "contents" :"%STR"}           ,
+		{ "trigger" : "%NRSTR"         , "contents" :"%NRSTR"}         ,
+		{ "trigger" : "%SUBSTR"        , "contents" :"%SUBSTR"}        ,
+		{ "trigger" : "%QSUBSTR"       , "contents" :"%QSUBSTR"}       ,
+		{ "trigger" : "%SUPERQ"        , "contents" :"%SUPERQ"}        ,
+		{ "trigger" : "%SYMEXIST"      , "contents" :"%SYMEXIST"}      ,
+		{ "trigger" : "%SYMGLOBL"      , "contents" :"%SYMGLOBL"}      ,
+		{ "trigger" : "%SYMLOCAL"      , "contents" :"%SYMLOCAL"}      ,
+		{ "trigger" : "%SYSEVALF"      , "contents" :"%SYSEVALF"}      ,
+		{ "trigger" : "%SYSFUNC"       , "contents" :"%SYSFUNC"}       ,
+		{ "trigger" : "%QSYSFUNC"      , "contents" :"%QSYSFUNC"}      ,
+		{ "trigger" : "%SYSGET"        , "contents" :"%SYSGET"}        ,
+		{ "trigger" : "%SYSMACEXEC"    , "contents" :"%SYSMACEXEC"}    ,
+		{ "trigger" : "%SYSMACEXIST"   , "contents" :"%SYSMACEXIST"}   ,
+		{ "trigger" : "%SYSMEXECDEPTH" , "contents" :"%SYSMEXECDEPTH"} ,
+		{ "trigger" : "%SYSMEXECNAME"  , "contents" :"%SYSMEXECNAME"}  ,
+		{ "trigger" : "%SYSPROD"       , "contents" :"%SYSPROD"}       ,
+		{ "trigger" : "%UNQUOTE"       , "contents" :"%UNQUOTE"}       ,
+		{ "trigger" : "%UPCASE"        , "contents" :"%UPCASE"}        ,
+		{ "trigger" : "%QUPCASE"       , "contents" :"%QUPCASE"}
+	]
+}

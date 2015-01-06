@@ -1,0 +1,26 @@
+// [PackageDev] target_format: plist, ext: tmPreferences
+{
+    "uuid": "38DBCCE5-2005-410C-B7D7-013097751AC9",
+    "settings": {
+        "shellVariables": [
+            {
+                "value": " * ",
+                "name": "TM_COMMENT_START"
+            },
+            {
+                "value": "/**\n\n",
+                "name": "TM_COMMENT_START_2"
+            },
+            {
+                "value": "\n\n */",
+                "name": "TM_COMMENT_END_2"
+            },
+            {
+                "value": "yes",
+                "name": "TM_COMMENT_DISABLE_INDENT_2"
+            }
+        ]
+    },
+    "name": "Comments",
+    "scope": "source.sas"
+}

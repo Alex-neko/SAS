@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[SELECT ${1}
+    FROM ${2}
+    WHERE ${3};
+]]>
+  </content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>select</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>sql.procstep.block.sas</scope>
+</snippet>

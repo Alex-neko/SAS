@@ -1,0 +1,134 @@
+{
+    "uuid": "129969b6-3952-4444-ba64-36b83199a78b",
+    "fileTypes": [
+        "log",
+        "saslog"
+    ],
+    "name": "SAS Log",
+    "scopeName": "text.SASLog",
+    "patterns": [
+        {
+            "match": "(?i:^(NOTE)(\\:)\\s*(.*))",
+            "name": "meta.note.SASLog",
+            "comment": "NOTE line",
+            "captures":{
+                "1":{
+                    "name":"entity.name.function.SASLog"
+                },
+                "2":{
+                    "name":"punctuation.definition.column.SASLog"
+                }
+            }
+        },
+        {
+            "match": "(?i:^(MLOGIC)(\\()(\\w*)(\\))(\\:)\\s*(.*))",
+            "name": "meta.mlogic.SASLog",
+            "comment": "MLOGIC message",
+            "captures":{
+                "1":{
+                    "name":"entity.name.function.SASLog"
+                },
+                "2":{
+                    "name":"punctuation.definition.parenthesis.open.SASLog"
+                },
+                "3":{
+                    "name":"variable.other.SASLog"
+                },
+                "4":{
+                    "name":"punctuation.definition.parenthesis.close.SASLog"
+                },
+                "5":{
+                    "name":"punctuation.definition.column.SASLog"
+                }
+            }
+        },
+        {
+            "match": "(?i:^(MPRINT)(\\()(\\w*)(\\))(\\:)\\s*(.*))",
+            "name": "meta.mprint.SASLog",
+            "comment": "MPRINT message",
+            "captures":{
+                "1":{
+                    "name":"entity.name.function.SASLog"
+                },
+                "2":{
+                    "name":"punctuation.definition.parenthesis.open.SASLog"
+                },
+                "3":{
+                    "name":"variable.other.SASLog"
+                },
+                "4":{
+                    "name":"punctuation.definition.parenthesis.close.SASLog"
+                },
+                "5":{
+                    "name":"punctuation.definition.column.SASLog"
+                },
+                "6": {
+                    "name": "source.sas"
+                }
+            }
+        },
+        {
+            "match": "(?i:^(MACROGEN)(\\()(\\w*)(\\))(\\:)\\s*(.*))",
+            "name": "meta.macrogen.SASLog",
+            "comment": "MACROGEN message",
+            "captures":{
+                "1":{
+                    "name":"entity.name.function.SASLog"
+                },
+                "2":{
+                    "name":"punctuation.definition.parenthesis.open.SASLog"
+                },
+                "3":{
+                    "name":"variable.other.SASLog"
+                },
+                "4":{
+                    "name":"punctuation.definition.parenthesis.close.SASLog"
+                },
+                "5":{
+                    "name":"punctuation.definition.column.SASLog"
+                },
+                "6": {
+                    "name": "source.sas"
+                }
+            }
+        },
+        {
+            "match": "(?i:^(SYMBOLGEN)(\\:)\\s(\\w*))",
+            "name": "meta.symbolgen.SASLog",
+            "comment": "SYMBOLGEN message",
+            "captures":{
+                "1":{
+                    "name":"entity.name.function.SASLog"
+                },
+                "2":{
+                    "name":"punctuation.definition.column.SASLog"
+                }
+            }
+        },
+        {
+           "match": "(?i:(macro)\\s(\\w*))",
+           "comment": "macro variable",
+           "captures": {
+               "2": { "name": "variable.other.macro.SASLog" }
+           }
+        },
+        {
+           "match": "(?i:^(\\d+)(.*))",
+           "comment": "source sas",
+           "captures": {
+                "1": { "name": "number.line.source.sas" },
+                "2": { "name": "source.sas" }
+           }
+        },
+        {
+            "match": "(?i:^(ERROR|ERREUR|WARNING|ATTENTION)|Uninitialized| remerg|invalid).*",
+            "name": "invalid.SASLog",
+            "comment": "Error line"
+        },
+        {
+            "match": "(?i:^INFO).*",
+            "name": "entity.name.function.SASLog",
+            "comment": "Info message"
+        }
+    ]
+}
